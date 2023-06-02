@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Login from "./Login";
+import SingUp from "./SingUp";
 
 function App() {
+  const [showSingUp, setShowSingUp] = useState(false);
+  const handleSingUp = () => {
+    setShowSingUp(true);
+    setShowLogIn(false);
+  };
+  const [showLogIn, setShowLogIn] = useState(false);
+  const handleLogIn = () => {
+    setShowLogIn(true);
+    setShowSingUp(false);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <button onClick={handleSingUp}>sing up</button>
+      <button onClick={handleLogIn}>Log In</button>
+      {showSingUp && <SingUp />}
+      {showLogIn && <Login />}
     </div>
   );
 }
